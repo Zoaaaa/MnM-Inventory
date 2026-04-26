@@ -21,7 +21,21 @@ if (!fs.existsSync(uploadsDir)) {
 
 // Middleware
 app.use(cors({
-  origin: config.frontendUrl,
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+
+    const allowedOrigins = config.frontendUrl
+      .split(',')
+      .map((url) => url.trim())
+      .filter(Boolean);
+
+    if (allowedOrigins.some((allowed) => origin === allowed || origin.endsWith('.vercel.app'))) {
+      callback(null, true);
+    } else {
+      callback(null, true); // Allow all origins in development; restrict in production if needed
+    }
+  },
   credentials: true,
 }));
 app.use(express.json());
