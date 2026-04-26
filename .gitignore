@@ -13,6 +13,9 @@ dist/
 backend/uploads/*
 !backend/uploads/.gitkeep
 
+# Private plans and proposals
+plans/
+
 # OS files
 .DS_Store
 Thumbs.db
