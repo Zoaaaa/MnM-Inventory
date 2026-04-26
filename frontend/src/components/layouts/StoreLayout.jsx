@@ -13,8 +13,8 @@ function StoreLayout() {
             <Link to="/" className="flex items-center gap-2">
               <img src="/logo.jpg" alt="MnM Cubes" className="h-8 w-8 rounded" />
               <div>
-                <h1 className="text-lg font-bold text-gray-900 leading-tight">MnM Cubes</h1>
-                <p className="text-[10px] text-gray-500 leading-tight -mt-0.5">Speedcube Shop PH</p>
+                <h1 className="text-lg font-bold text-gray-900 leading-tight">MnM Cube Shop</h1>
+                <p className="text-[10px] text-gray-500 leading-tight -mt-0.5">PH' #1 CUBE SOURCE since 2015</p>
               </div>
             </Link>
             <a
@@ -41,7 +41,7 @@ function StoreLayout() {
       <footer className="bg-white border-t mt-12 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} MnM Cubes. All prices in PHP.
+            © {new Date().getFullYear()} MnM Cube Shop. All prices in PHP.
           </p>
           <p className="text-xs text-gray-400 mt-1">
             Order via Facebook Messenger • Based in the Philippines
