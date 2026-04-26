@@ -1,10 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { formatPrice, getProductImage, getMessengerLink } from '../../lib/utils';
 import StockBadge from '../ui/StockBadge';
 
-const MESSENGER_PAGE_ID = import.meta.env.VITE_MESSENGER_PAGE_ID || '';
-
 function ProductModal({ product, onClose }) {
+  const [messengerPageId, setMessengerPageId] = useState('');
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/config/messenger`)
+      .then((res) => res.json())
+      .then((json) => {
+        setMessengerPageId(json?.data?.pageId || '');
+      })
+      .catch(() => {
+        setMessengerPageId('');
+      });
+  }, []);
+
   // Close on escape key
   useEffect(() => {
     const handleEscape = (e) => {
@@ -20,7 +31,7 @@ function ProductModal({ product, onClose }) {
 
   if (!product) return null;
 
-  const messengerLink = getMessengerLink(MESSENGER_PAGE_ID, product.name);
+  const messengerLink = getMessengerLink(messengerPageId, product.name);
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
