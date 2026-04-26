@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { formatPrice, getProductImage } from '../../lib/utils';
-
-const MESSENGER_PAGE_ID = import.meta.env.VITE_MESSENGER_PAGE_ID || '';
+import { useMessenger } from '../../context/MessengerContext';
 
 function FeaturedModal({ featured, onClose }) {
+  const { pageId } = useMessenger();
   // Close on escape key
   useEffect(() => {
     const handleEscape = (e) => {
@@ -29,8 +29,8 @@ function FeaturedModal({ featured, onClose }) {
   const orderMessage = isBundle
     ? `Hi! I'd like to order the bundle: ${featured.title} (${productNames}). Is this still available?`
     : `Hi! I'd like to order: ${featured.title}. Is this still available?`;
-  const messengerLink = MESSENGER_PAGE_ID
-    ? `https://m.me/${MESSENGER_PAGE_ID}?text=${encodeURIComponent(orderMessage)}`
+  const messengerLink = pageId
+    ? `https://m.me/${pageId}?text=${encodeURIComponent(orderMessage)}`
     : '#';
 
   // Check if the featured item itself is in stock

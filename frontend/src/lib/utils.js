@@ -46,6 +46,7 @@ export function getStockDisplay(stockStatus, stock) {
  * Generate Messenger link with prefilled message
  */
 export function getMessengerLink(pageId, productName) {
+  if (!pageId) return '#';
   const message = encodeURIComponent(
     `Hi! I'd like to order: ${productName}. Is this still available?`
   );

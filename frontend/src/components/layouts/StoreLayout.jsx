@@ -1,6 +1,9 @@
 import { Outlet, Link } from 'react-router-dom';
+import { useMessenger } from '../../context/MessengerContext';
 
 function StoreLayout() {
+  const { pageId } = useMessenger();
+  const messengerHref = pageId ? `https://m.me/${pageId}` : '#';
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -15,7 +18,7 @@ function StoreLayout() {
               </div>
             </Link>
             <a
-              href="https://m.me/"
+              href={messengerHref}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-primary-600 hover:text-primary-700 flex items-center gap-1"

@@ -1,20 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { formatPrice, getProductImage, getMessengerLink } from '../../lib/utils';
+import { useMessenger } from '../../context/MessengerContext';
 import StockBadge from '../ui/StockBadge';
 
 function ProductModal({ product, onClose }) {
-  const [messengerPageId, setMessengerPageId] = useState('');
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/config/messenger`)
-      .then((res) => res.json())
-      .then((json) => {
-        setMessengerPageId(json?.data?.pageId || '');
-      })
-      .catch(() => {
-        setMessengerPageId('');
-      });
-  }, []);
+  const { pageId: messengerPageId } = useMessenger();
 
   // Close on escape key
   useEffect(() => {
