@@ -11,6 +11,7 @@ function ProductsPage() {
   const [showForm, setShowForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [filter, setFilter] = useState('all'); // all, low_stock, out_of_stock
+  const [categoryFilter, setCategoryFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
   const fetchProducts = async () => {
@@ -69,6 +70,10 @@ function ProductsPage() {
     if (filter === 'hidden') return !p.is_active;
     return true;
   }).filter((p) => {
+    if (categoryFilter === 'all') return true;
+    if (categoryFilter === 'uncategorized') return !p.category_id;
+    return String(p.category_id) === categoryFilter;
+  }).filter((p) => {
     if (!searchQuery) return true;
     return p.name.toLowerCase().includes(searchQuery.toLowerCase());
   });
@@ -78,7 +83,11 @@ function ProductsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Products</h1>
-          <p className="text-sm text-gray-500">{products.length} total products</p>
+          <p className="text-sm text-gray-500">
+            {filteredProducts.length === products.length
+              ? `${products.length} total products`
+              : `${filteredProducts.length} of ${products.length} products`}
+          </p>
         </div>
         <button
           onClick={() => { setEditingProduct(null); setShowForm(true); }}
@@ -98,11 +107,22 @@ function ProductsPage() {
           className="input-field flex-1"
         />
         <select
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+          className="input-field sm:w-48"
+        >
+          <option value="all">All Categories</option>
+          {categories.map((cat) => (
+            <option key={cat.id} value={String(cat.id)}>{cat.name}</option>
+          ))}
+          <option value="uncategorized">Uncategorized</option>
+        </select>
+        <select
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
           className="input-field sm:w-48"
         >
-          <option value="all">All Products</option>
+          <option value="all">All Statuses</option>
           <option value="low_stock">Low Stock</option>
           <option value="out_of_stock">Out of Stock</option>
           <option value="hidden">Hidden</option>
