@@ -14,7 +14,7 @@ function StoreLayout() {
               <img src="/logo.jpg" alt="MnM Cubes" className="h-8 w-8 rounded" />
               <div>
                 <h1 className="text-lg font-bold text-gray-900 leading-tight">MnM Cube Shop</h1>
-                <p className="text-[10px] text-gray-500 leading-tight -mt-0.5">PH' #1 CUBE SOURCE since 2015</p>
+                <p className="text-[10px] text-gray-500 leading-tight -mt-0.5">PH's #1 CUBE SOURCE since 2015</p>
               </div>
             </Link>
             <a
