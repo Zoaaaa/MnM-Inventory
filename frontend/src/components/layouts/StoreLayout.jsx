@@ -8,7 +8,7 @@ function StoreLayout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-14">
             <Link to="/" className="flex items-center gap-2">
-              <img src="/cube.svg" alt="MnM Cubes" className="h-8 w-8" />
+              <img src="/logo.jpg" alt="MnM Cubes" className="h-8 w-8 rounded" />
               <div>
                 <h1 className="text-lg font-bold text-gray-900 leading-tight">MnM Cubes</h1>
                 <p className="text-[10px] text-gray-500 leading-tight -mt-0.5">Speedcube Shop PH</p>

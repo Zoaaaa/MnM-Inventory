@@ -22,7 +22,7 @@ function FeaturedModal({ featured, onClose }) {
   const products = featured.products || [];
   const firstProduct = products[0] || null;
   const isBundle = products.length > 1;
-  const imageUrl = featured.image_url || (firstProduct && getProductImage(firstProduct.image_url)) || '/cube.svg';
+  const imageUrl = featured.image_url || (firstProduct && getProductImage(firstProduct.image_url)) || '/logo.jpg';
 
   // Build messenger message with all product names
   const productNames = products.map((p) => p.name).join(', ');
@@ -62,7 +62,7 @@ function FeaturedModal({ featured, onClose }) {
             src={imageUrl}
             alt={featured.title}
             className="w-full h-full object-cover"
-            onError={(e) => { e.target.src = '/cube.svg'; }}
+            onError={(e) => { e.target.src = '/logo.jpg'; }}
           />
           {/* Bundle badge */}
           {isBundle && (
@@ -127,7 +127,7 @@ function FeaturedModal({ featured, onClose }) {
                     src={getProductImage(p.image_url)}
                     alt={p.name}
                     className="w-10 h-10 rounded-lg object-cover bg-gray-100 flex-shrink-0 ring-1 ring-gray-200"
-                    onError={(e) => { e.target.src = '/cube.svg'; }}
+                    onError={(e) => { e.target.src = '/logo.jpg'; }}
                   />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-gray-900 truncate">{p.name}</p>

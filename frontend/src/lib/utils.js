@@ -73,5 +73,5 @@ export function debounce(func, wait) {
  */
 export function getProductImage(imageUrl) {
   if (imageUrl && imageUrl.trim()) return imageUrl;
-  return '/cube.svg';
+  return '/logo.jpg';
 }

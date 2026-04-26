@@ -26,7 +26,7 @@ function AdminLayout() {
           <div className="flex items-center justify-between h-14">
             <div className="flex items-center gap-4">
               <Link to="/admin" className="flex items-center gap-2">
-                <img src="/cube.svg" alt="MnM Cubes" className="h-7 w-7" />
+                <img src="/logo.jpg" alt="MnM Cubes" className="h-7 w-7 rounded" />
                 <span className="font-bold text-sm">MnM Admin</span>
               </Link>
             </div>

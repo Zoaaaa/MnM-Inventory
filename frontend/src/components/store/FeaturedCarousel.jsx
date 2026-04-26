@@ -47,7 +47,7 @@ function FeaturedCarousel({ onFeaturedClick }) {
   const isBundle = products.length > 1;
 
   // Use custom image, or first product image, or fallback
-  const imageUrl = current.image_url || (firstProduct && getProductImage(firstProduct.image_url)) || '/cube.svg';
+  const imageUrl = current.image_url || (firstProduct && getProductImage(firstProduct.image_url)) || '/logo.jpg';
 
   return (
     <div
@@ -66,7 +66,7 @@ function FeaturedCarousel({ onFeaturedClick }) {
                 src={imageUrl}
                 alt={current.title}
                 className="w-full h-full object-cover transition-opacity duration-500"
-                onError={(e) => { e.target.src = '/cube.svg'; }}
+                onError={(e) => { e.target.src = '/logo.jpg'; }}
               />
               {/* Gradient overlay for text readability on mobile */}
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent sm:bg-gradient-to-r sm:from-transparent sm:via-transparent sm:to-gray-900/60" />
@@ -160,7 +160,7 @@ function FeaturedCarousel({ onFeaturedClick }) {
                       src={getProductImage(p.image_url)}
                       alt={p.name}
                       className="w-7 h-7 rounded object-cover flex-shrink-0 bg-gray-700 ring-1 ring-white/10"
-                      onError={(e) => { e.target.src = '/cube.svg'; }}
+                      onError={(e) => { e.target.src = '/logo.jpg'; }}
                     />
                     <span className="text-sm text-white font-medium truncate flex-1">{p.name}</span>
                     <span className="text-sm font-semibold text-amber-400">{formatPrice(p.price)}</span>
@@ -191,7 +191,7 @@ function FeaturedCarousel({ onFeaturedClick }) {
               {items.map((item, index) => {
                 const thumbProducts = item.products || [];
                 const thumbFirst = thumbProducts[0] || null;
-                const thumbImage = item.image_url || (thumbFirst && getProductImage(thumbFirst.image_url)) || '/cube.svg';
+                const thumbImage = item.image_url || (thumbFirst && getProductImage(thumbFirst.image_url)) || '/logo.jpg';
                 return (
                   <button
                     key={item.id}
@@ -206,7 +206,7 @@ function FeaturedCarousel({ onFeaturedClick }) {
                       src={thumbImage}
                       alt={item.title}
                       className="w-10 h-10 lg:w-12 lg:h-12 rounded object-cover flex-shrink-0"
-                      onError={(e) => { e.target.src = '/cube.svg'; }}
+                      onError={(e) => { e.target.src = '/logo.jpg'; }}
                     />
                     <div className="min-w-0">
                       <p className={`text-xs font-medium truncate ${

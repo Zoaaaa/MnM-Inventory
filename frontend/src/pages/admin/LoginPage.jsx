@@ -34,7 +34,7 @@ function LoginPage() {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <img src="/cube.svg" alt="MnM Cubes" className="h-12 w-12 mx-auto mb-3" />
+          <img src="/logo.jpg" alt="MnM Cubes" className="h-12 w-12 mx-auto mb-3 rounded-lg" />
           <h1 className="text-xl font-bold text-gray-900">Admin Login</h1>
           <p className="text-sm text-gray-500 mt-1">MnM Cubes Inventory</p>
         </div>

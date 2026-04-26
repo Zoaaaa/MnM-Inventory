@@ -142,10 +142,10 @@ function FeaturedPage() {
 
               {/* Image thumbnail */}
               <img
-                src={item.image_url || (item.products?.[0] && getProductImage(item.products[0].image_url)) || '/cube.svg'}
+                src={item.image_url || (item.products?.[0] && getProductImage(item.products[0].image_url)) || '/logo.jpg'}
                 alt={item.title}
                 className="w-16 h-16 rounded-lg object-cover bg-gray-100 flex-shrink-0"
-                onError={(e) => { e.target.src = '/cube.svg'; }}
+                onError={(e) => { e.target.src = '/logo.jpg'; }}
               />
 
               {/* Info */}
@@ -393,7 +393,7 @@ function FeaturedForm({ item, products, onClose, onSaved }) {
     ? imagePreview
     : selectedProducts[0]
       ? getProductImage(selectedProducts[0].image_url)
-      : '/cube.svg';
+      : '/logo.jpg';
 
   const currentPrice = parseFloat(form.price) || 0;
   const hasDiscount = form.show_original_price && originalPrice > currentPrice && currentPrice > 0;
@@ -723,7 +723,7 @@ function FeaturedForm({ item, products, onClose, onSaved }) {
                   src={previewImage}
                   alt="Preview"
                   className="w-20 h-20 rounded-lg object-cover bg-gray-700 flex-shrink-0"
-                  onError={(e) => { e.target.src = '/cube.svg'; }}
+                  onError={(e) => { e.target.src = '/logo.jpg'; }}
                 />
                 <div className="text-white min-w-0 flex-1">
                   <h4 className="font-bold text-sm truncate">{form.title || 'Untitled'}</h4>
