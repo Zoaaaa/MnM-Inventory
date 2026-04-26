@@ -91,6 +91,12 @@ DB_PASSWORD=your_password
 JWT_SECRET=change_this_to_a_random_string
 MESSENGER_PAGE_ID=your_facebook_page_id
 FRONTEND_URL=http://localhost:5173
+
+# Cloudinary (free account: https://cloudinary.com)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+CLOUDINARY_FOLDER=mnm-cubes
 ```
 
 ### 4. Set up database tables and seed data
@@ -176,6 +182,7 @@ npm run dev
 | Backend | Node.js, Express.js |
 | Database | PostgreSQL |
 | Auth | JWT + bcrypt |
+| Image Hosting | Cloudinary (free tier) |
 | File Import | xlsx (SheetJS) |
 | Deployment | PM2 + Nginx |
 
@@ -213,7 +220,7 @@ npm run dev
 
 ## 🔮 Future Expansion Ideas
 
-- [ ] Image upload (local or S3)
+- [x] Image upload (Cloudinary)
 - [ ] Multiple admin accounts
 - [ ] Order request tracking
 - [ ] Audit logs

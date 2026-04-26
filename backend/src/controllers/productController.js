@@ -3,6 +3,7 @@ const slugify = require('slugify');
 const XLSX = require('xlsx');
 const fs = require('fs');
 const path = require('path');
+const { uploadToCloudinary, deleteFromCloudinary, getPublicIdFromUrl } = require('../middleware/upload');
 
 /**
  * GET /api/products
@@ -468,7 +469,7 @@ async function importProducts(req, res, next) {
 
 /**
  * POST /api/products/upload-image
- * Upload a product image and return the URL (admin)
+ * Upload a product image to Cloudinary and return the URL (admin)
  */
 async function uploadImage(req, res, next) {
   try {
@@ -476,15 +477,29 @@ async function uploadImage(req, res, next) {
       return res.status(400).json({ success: false, message: 'No image file uploaded.' });
     }
 
-    // Build the URL path for the uploaded image
-    const imageUrl = `/uploads/images/${req.file.filename}`;
+    // Generate a unique public_id based on the original filename
+    const originalName = path.parse(req.file.originalname).name;
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e4);
+    const publicId = `products/${slugify(originalName, { lower: true, strict: true })}-${uniqueSuffix}`;
+
+    // Upload buffer to Cloudinary
+    const result = await uploadToCloudinary(req.file.buffer, {
+      public_id: publicId,
+      transformation: [
+        { width: 1200, height: 1200, crop: 'limit' }, // Max dimensions
+        { quality: 'auto', fetch_format: 'auto' },     // Auto-optimize
+      ],
+    });
 
     res.json({
       success: true,
       data: {
-        image_url: imageUrl,
-        filename: req.file.filename,
-        size: req.file.size,
+        image_url: result.secure_url,
+        public_id: result.public_id,
+        width: result.width,
+        height: result.height,
+        size: result.bytes,
+        format: result.format,
       },
     });
   } catch (error) {

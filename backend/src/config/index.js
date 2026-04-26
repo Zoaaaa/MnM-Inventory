@@ -18,5 +18,11 @@ module.exports = {
     pageId: process.env.MESSENGER_PAGE_ID || '',
     defaultMessage: process.env.MESSENGER_DEFAULT_MESSAGE || 'Hi! I\'d like to order: {product}. Is this still available?',
   },
+  cloudinary: {
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME || '',
+    apiKey: process.env.CLOUDINARY_API_KEY || '',
+    apiSecret: process.env.CLOUDINARY_API_SECRET || '',
+    folder: process.env.CLOUDINARY_FOLDER || 'mnm-cubes',
+  },
   frontendUrl: process.env.FRONTEND_URL || 'http://localhost:5173',
 };
