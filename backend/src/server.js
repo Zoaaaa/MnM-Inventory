@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const config = require('./config');
 const { errorHandler, notFound } = require('./middleware/errorHandler');
+const initDatabase = require('./db/init');
 
 // Route imports
 const authRoutes = require('./routes/auth');
@@ -75,9 +76,17 @@ app.get('/api/config/messenger', (req, res) => {
 app.use(notFound);
 app.use(errorHandler);
 
-// Start server
-app.listen(config.port, () => {
-  console.log(`
+// Initialize database and start server
+async function start() {
+  try {
+    console.log('🔄 Initializing database...');
+    await initDatabase();
+  } catch (error) {
+    console.error('⚠️  Database init error (server will start anyway):', error.message);
+  }
+
+  app.listen(config.port, () => {
+    console.log(`
   🚀 MnM Inventory API Server
   ============================
   Environment: ${config.nodeEnv}
@@ -86,7 +95,10 @@ app.listen(config.port, () => {
   API:         http://localhost:${config.port}/api
   Health:      http://localhost:${config.port}/api/health
   ============================
-  `);
-});
+    `);
+  });
+}
+
+start();
 
 module.exports = app;
